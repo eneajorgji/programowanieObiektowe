@@ -1,19 +1,22 @@
-from abc import ABC, abstractclassmethod
+from abc import ABC, abstractmethod
 
-# dziedziczenie
-class Ryba:
+
+# Dziedziczenie
+
+class Ryba(ABC):
     def __init__(self, nazwa, wiek, waga):
         self.nazwa = nazwa
         self.wiek = wiek
         self.waga = waga
-        self._pole = 1
 
+    @abstractmethod
     def print(self):
-        if self.wiek == 1:
-            print(f"Ta ryba to {self.nazwa} ma {self.wiek} rok oraz wazy {self.waga}")
-            return None
-        print(f"Ta ryba to {self.nazwa} ma {self.wiek} lat oraz wazy {self.waga}")
+        pass
 
+    #    if self.wiek == 1:
+    #        print(f"Ta ryba to {self.nazwa} ma {self.wiek} rok oraz waży {self.waga} kg")
+    #        return None
+    #    print(f"Ta ryba to {self.nazwa} ma {self.wiek} lat oraz waży {self.waga} kg")
     def urodziny(self):
         self.wiek += 1
 
@@ -21,12 +24,12 @@ class Ryba:
 class Slodkowodna(Ryba):
     def print(self):
         if self.wiek == 1:
-            print(f"Ta Slodkowodna ryba to {self.nazwa} ma {self.wiek} rok oraz wazy {self.waga}")
+            print(f"Ta słodkowodna ryba to {self.nazwa} ma {self.wiek} rok oraz waży {self.waga} kg")
             return None
-        print(f"Ta Slodkowodna ryba to {self.nazwa} ma {self.wiek} lat oraz wazy {self.waga}")
+        print(f"Ta słodkowodna ryba to {self.nazwa} ma {self.wiek} lat oraz waży {self.waga} kg")
 
 
-class Slonnowodna(Ryba):
+class Slonowodna(Ryba):
     def __init__(self, nazwa, wiek, waga, morze):
         super().__init__(nazwa, wiek, waga)
         self.morze = morze
@@ -34,19 +37,22 @@ class Slonnowodna(Ryba):
     def print(self):
         if self.wiek == 1:
             print(
-                f"Ta Slonnowodna ryba to {self.nazwa} ma {self.wiek} rok oraz wazy {self.waga} kg, obszar wystepowania to {self.morze}.")
+                f"Ta słonowodna ryba to {self.nazwa} ma {self.wiek} rok oraz waży {self.waga} kg. Obszar występowania to {self.morze}")
             return None
-        print(f"Ta Slonnowodna ryba to {self.nazwa} ma {self.wiek} lat oraz wazy {self.waga} kg")
+        print(
+            f"Ta słonowodna ryba to {self.nazwa} ma {self.wiek} lat oraz waży {self.waga} kg. Obszar występowania to {self.morze}")
 
 
-ryba_0 = Ryba("Pryzkladowa", 5, 10.5)
+class Test(Ryba):
+    def print(self):
+        print("Hello")
 
-ryba_1 = Ryba("Okon", 3, 2.1)
-ryba_2 = Slonnowodna("Szczupak", 1, .8, "Duze morze")
-ryba_3 = Slodkowodna("Okon", 3, 2.1)
 
-ryba_1.print()
-ryba_2.print()
-ryba_3.print()
-
-print(ryba_0._pole)
+# ryba0 = Ryba("Jakaś tam", 5, 10.5)
+ryba1 = Slodkowodna("Szczupak", 1, 0.8)
+ryba2 = Slonowodna("Dorsz", 3, 2.1, "Bałtyk")
+ryba2.urodziny()
+# ryba0.print()
+ryba1.print()
+ryba2.print()
+ob = Test("nazwa", 11, 12)
