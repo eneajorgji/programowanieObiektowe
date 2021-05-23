@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-import datetime
 
 
 class Punkt:
@@ -56,3 +55,11 @@ class Prostokat:
 
         plt.grid()
         plt.show()
+
+
+p1 = Punkt(1, 0)
+p2 = Punkt(10, 10)
+prost = Prostokat(p1, p2)
+
+prost.rysuj(p1, p2)
+print(prost.pole())
