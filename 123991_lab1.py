@@ -20,16 +20,18 @@ class Prosta:
 
     def miejsce_zerowe(self):
         if self.a == 0:
-            # try: ZeroDivisionError
             print("Brak miejsca zerowego,")
         else:
-            return -self.a / self.b
+            miejsce_x = -self.b / self.a
+            return miejsce_x, print(miejsce_x)
 
 
-p = Punkt(3, 6)
-pr = Prosta(1, 2)
+p = Punkt(1, 5)
+pr = Prosta(2, 3)
 
 print(p.nalezy_do(pr))
+pr.miejsce_zerowe()
+
 
 
 ###########
