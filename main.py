@@ -1,3 +1,5 @@
+import datetime
+
 import matplotlib.pyplot as plt
 
 
@@ -63,3 +65,25 @@ prost = Prostokat(p1, p2)
 
 prost.rysuj(p1, p2)
 print(prost.pole())
+
+
+# Zadanie 3
+
+class Note:
+    czas_stworzenia = datetime.datetime.now()
+
+    def __init__(self, autor, tresc):
+        self.autor = autor
+        self.tresc = tresc
+
+    def __repr__(self):
+        return f"Notatka: ({self.autor}, {self.tresc})"
+
+
+class Notebook(Note):
+    def __init__(self):
+        super(Notebook, self).__init__()
+        self.lista = []
+
+    def add_new(self):
+        self.lista.append(self.tresc)

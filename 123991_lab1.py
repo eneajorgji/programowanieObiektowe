@@ -63,12 +63,15 @@ class Prostokat:
         plt.show()
 
 
-p1 = Punkt(1, 0)
-p2 = Punkt(10, 10)
+p1 = Punkt(1, 1)
+p2 = Punkt(2, 3)
+
 prost = Prostokat(p1, p2)
+print("Pole wynosi: ", prost.pole())
+
+print("Obwod wynosi: ", prost.obwod())
 
 prost.rysuj(p1, p2)
-print(prost.pole())
 
 
 ###########
@@ -84,17 +87,13 @@ class Fraction:
 
     def show_fraction(self):
         try:
-            # return f"{self.a} / {self.b} jest {self.a / self.b}"
-            if self.a > self.b:
-                return f"{self.a // self.b} {self.a % self.b} / {self.b} "
-            else:
-                return f"{self.a} / {self.b}"
+            return f"{self.a} / {self.b}"
         except ZeroDivisionError:
             print(f"Mianownik jest {self.b}")
 
-    @property
-    def a(self):
-        return self.a
+    # @property
+    # def a(self):
+    #     return self.a
 
     def __repr__(self):
         return repr(self.a) + "/" + repr(self.b)
@@ -121,12 +120,7 @@ class Fraction:
         pass
 
 
-a, b = 5, 1
+a, b = 5, 2
 c, d = 1, 4
 f1 = Fraction(a, b)
-f2 = Fraction(c, d)
-print(f1.show_fraction())
-a = 4
-print(f1.a())
-f3 = f1 + f2
-print(f3)
+print(f1.__repr__())
