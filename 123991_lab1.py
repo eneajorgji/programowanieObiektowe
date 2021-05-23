@@ -1,3 +1,7 @@
+import matplotlib.pyplot as plt
+import datetime
+
+
 ###########
 # Zadanie 1
 
@@ -31,7 +35,6 @@ pr = Prosta(2, 3)
 
 print(p.nalezy_do(pr))
 pr.miejsce_zerowe()
-
 
 
 ###########
