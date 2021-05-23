@@ -7,8 +7,7 @@ class Punkt:
         self.y = y
 
     def nalezy_do(self, other):
-        if other * self.x + other == self.y:
-            # if self.x == self.y:
+        if self.x * other.a + other.b == self.y:
             return True
         else:
             return False
@@ -31,6 +30,7 @@ p = Punkt(3, 6)
 pr = Prosta(1, 2)
 
 print(p.nalezy_do(pr))
+
 
 ###########
 # Zadanie 2
@@ -81,7 +81,7 @@ class Fraction:
         pass
 
 
-a, b = 5, 0
+a, b = 5, 1
 c, d = 1, 4
 f1 = Fraction(a, b)
 f2 = Fraction(c, d)
