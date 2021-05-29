@@ -84,6 +84,8 @@ class Notebook(Note):
     def __init__(self):
         super(Notebook, self).__init__()
         self.lista = []
+        pass
 
     def add_new(self):
         self.lista.append(self.tresc)
+        pass
