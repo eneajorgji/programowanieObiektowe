@@ -4,7 +4,7 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QIcon
 
 
-class NazwaNaszejKlasy(QWidget):
+class NazwaNaszejKlasy(QMainWindow):
 
     def __init__(self):
         super().__init__()
@@ -17,6 +17,14 @@ class NazwaNaszejKlasy(QWidget):
         self.initUI()
 
     def initUI(self):
+        buttonR = QMessageBox.question(self, "Nazwa", "Pytanie", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+        if buttonR == QMessageBox.Yes:
+            print("kliknieto YES")
+            self.width = 1040
+        else:
+            print("Kliknieto NO")
+            self.width = 440
+
         self.setWindowTitle(self.title)
         self.setGeometry(self.left, self.top, self.width, self.height)
         self.statusBar().showMessage('StatusBar naszego okienka') # dziedziczenie po QWidget
@@ -25,13 +33,14 @@ class NazwaNaszejKlasy(QWidget):
         button.setToolTip('Podpowiedz - co oznacza klikniecie w ten przycisk')
         button.move(10,5)
         button.clicked.connect(self.on_click)
+
+
         self.show()
 
     @pyqtSlot()
     def on_click(self):
         self.licznik += 1
-        print('klinknieto',self.licznik)
-
+        print('klinknieto', self.licznik)
 
 
 if __name__ == '__main__':
