@@ -5,46 +5,50 @@ import datetime
 # Zadanie 3
 
 class Note:
-    czas_stworzenia = datetime.datetime.now()
 
     def __init__(self, autor, tresc):
         self.autor = autor
         self.tresc = tresc
-        self.t = ""
 
     def get_time(self):
-        t = datetime.datetime.now()
-        return t
+        self.t = datetime.datetime.now()
+        return self.t.strftime("%H:%M")
 
+    # TODO
     def __repr__(self):
         return f"Notatka: ({self.autor}, {self.tresc})"
 
 
-class Notebook:
-    def __init__(self):
-        self.list_of_notes = ["taki przykład fgkjd asdjkhf askjdf sdjkla"]
+class Notebook():
+    list_of_notes = []
 
+    # def __init__(self):
+    #     super().__init__()
+
+    # TODO
     def add_new(self):
-        self.list_of_notes.append()
-        pass
+        return
 
+    # TODO
     def add_existing_note(self):
         pass
 
+    # TODO
     def len(self):
         print("Jest", len(self.list_of_notes), "dodanych notatek.")
 
+    # TODO
     def print_note(self):
-        licznik = 0
+        count = 0
         for i in self.list_of_notes:
-            licznik += 1
+            count += 1
             print(i)
-        print(licznik)
+        print(count)
 
 
 # nb = Notebook()
-# nb.add_new("Bartek", "Dokoncz instrukcje")
+# nb.add_new("Bartek")
 
+n = Note("a", "b")
 
-n = Note("a", "B")
 print("Godzina to:", n.get_time())
