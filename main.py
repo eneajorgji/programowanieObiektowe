@@ -27,7 +27,7 @@ class Notebook():
 
     # TODO
     def add_new(self):
-        return
+        print(self.autor)
 
     # TODO
     def add_existing_note(self):
@@ -46,9 +46,9 @@ class Notebook():
         print(count)
 
 
-# nb = Notebook()
-# nb.add_new("Bartek")
+nb = Notebook()
+nb.add_new("Bartek")
 
-n = Note("a", "b")
+n = Note()
 
 print("Godzina to:", n.get_time())
