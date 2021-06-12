@@ -111,10 +111,6 @@ class Fraction:
         except ZeroDivisionError:
             print(f"Mianownik jest {self.b}")
 
-    # @property
-    # def a(self):
-    #     return self.a
-
     def __repr__(self):
         return repr(self.a) + "/" + repr(self.b)
 
@@ -131,16 +127,17 @@ class Fraction:
         return Fraction(new_a, new_b)
 
     def __sub__(self, other):
-        pass
+        return self.a * other.d - self.b * other.c
 
     def __mul__(self, other):
-        pass
+        return self.a * other.c, "/", self.b * other.d
 
-    def __div__(self, other):
-        pass
+    def div(self, other):
+        return self.a * other.d, "/", self.b * other.c
 
 
 a, b = 5, 2
 c, d = 1, 4
 f1 = Fraction(a, b)
-print(f1.__repr__())
+
+print(f1)
