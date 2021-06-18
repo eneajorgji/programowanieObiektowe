@@ -39,6 +39,7 @@ print(l.ciekawostka())
 # Zadanie 2
 print("\n### Zadanie 2 ###\n")
 
+
 class GameObject(ABC):
     def __init__(self, health_point_count=50):
         self.health_point_count = health_point_count
@@ -62,17 +63,6 @@ class Player(GameObject):
         pass
 
 
-class Door(GameObject):
-    # def __init__(self, health_point_count):
-    #     super().__init__(health_point_count)
-
-    def interact(self, Player):
-        """
-        musi wyswietlac informacje o tym ze gracz przeszedł przez drzwi
-        """
-        print("Gracz przeszedl przez drzwi")
-
-
 class Monster(GameObject):
     # def __init__(self, health_point_count):
     #     super().__init__(health_point_count)
@@ -87,6 +77,17 @@ class Monster(GameObject):
         self.health_point_count = 0
         Player.health_point_count -= 10
         print("Gracz zabil potwora")
+
+
+class Door(GameObject):
+    # def __init__(self, health_point_count):
+    #     super().__init__(health_point_count)
+
+    def interact(self, Player):
+        """
+        musi wyswietlac informacje o tym ze gracz przeszedł przez drzwi
+        """
+        print("Gracz przeszedl przez drzwi")
 
 
 player_first = Player()
@@ -107,7 +108,6 @@ for stage in game:
         break
 
 
-
 class GameObject(ABC):
     def __init__(self, health_point_count):
         self.health_point_count = health_point_count
@@ -125,6 +125,7 @@ class GameObject(ABC):
 
 # Zadanie 3
 print("\n### Zadanie 3 ###\n")
+
 
 class Equation(ABC):
     def __init__(self, a):
@@ -185,4 +186,3 @@ print(30 * "#")
 eq2 = QuadraticEquation([1, 5, 6])
 eq2.solve()
 print(30 * "#")
-

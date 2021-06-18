@@ -26,17 +26,6 @@ class Player(GameObject):
         pass
 
 
-class Door(GameObject):
-    # def __init__(self, health_point_count):
-    #     super().__init__(health_point_count)
-
-    def interact(self, Player):
-        """
-        musi wyswietlac informacje o tym ze gracz przeszedł przez drzwi
-        """
-        print("Gracz przeszedl przez drzwi")
-
-
 class Monster(GameObject):
     # def __init__(self, health_point_count):
     #     super().__init__(health_point_count)
@@ -51,6 +40,16 @@ class Monster(GameObject):
         self.health_point_count = 0
         Player.health_point_count -= 10
         print("Gracz zabil potwora")
+
+class Door(GameObject):
+    # def __init__(self, health_point_count):
+    #     super().__init__(health_point_count)
+
+    def interact(self, Player):
+        """
+        musi wyswietlac informacje o tym ze gracz przeszedł przez drzwi
+        """
+        print("Gracz przeszedl przez drzwi")
 
 
 player_first = Player()
