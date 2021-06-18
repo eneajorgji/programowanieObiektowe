@@ -1,3 +1,4 @@
+import math
 from abc import ABC, abstractmethod
 
 # Zadanie 1
@@ -50,3 +51,68 @@ class GameObject(ABC):
     @abstractmethod
     def interact(self):
         pass
+
+
+# Zadanie 3
+print("\n### Zadanie 3 ###\n")
+
+class Equation(ABC):
+    def __init__(self, a):
+        self.a = a
+
+    @abstractmethod
+    def solve(self):
+        if len(self.a) == 2:
+            if self.a[0] == 0:
+                if self.a[1] == 0:
+                    print("Rownanie ma wiele rozwiazan")
+                else:
+                    print("Nie ma rozwiazan")
+            else:
+                x = - self.a[1] / self.a[0]
+                print("x =", x)
+        else:
+            if self.a[0] == 0:
+                print("Nie jest rownanie kwadratowe")
+            else:
+                delta = (self.a[1] * self.a[1]) - 4 * (self.a[0]) * (self.a[2])
+                if delta > 0:
+                    x1 = (-self.a[1] - math.sqrt(delta)) / (2 * self.a[0])
+                    x2 = (-self.a[1] + math.sqrt(delta)) / (2 * self.a[0])
+                    print("x1 =", x1)
+                    print("x2 =", x2)
+                elif delta == 0:
+                    xx = (-self.a[1]) / (2 * self.a[0])
+                    print("x =", xx)
+                else:
+                    print("Rownanie nie ma rozwiazan")
+
+
+class LinearEquation(Equation):
+    def __init__(self, a):
+        super().__init__(a)
+
+    def solve(self):
+        super().solve()
+
+
+class QuadraticEquation(Equation):
+    def __init__(self, a):
+        super().__init__(a)
+
+    def solve(self):
+        super().solve()
+
+
+eq = LinearEquation([2, 0])
+eq.solve()
+print(30 * "#")
+
+eq1 = LinearEquation([0, 2])
+eq1.solve()
+print(30 * "#")
+
+eq2 = QuadraticEquation([1, 5, 6])
+eq2.solve()
+print(30 * "#")
+
