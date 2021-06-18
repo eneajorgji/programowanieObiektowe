@@ -1,44 +1,56 @@
-###########
-# Zadanie 4
-class Fraction:
-    def __init__(self, a, b):
-        self.a = a
-        self.b = b
+from abc import ABC, abstractmethod
+from random import random
 
-    def show_fraction(self):
-        try:
-            return f"{self.a} / {self.b}"
-        except ZeroDivisionError:
-            print(f"Mianownik jest {self.b}")
 
-    def __repr__(self):
-        return repr(self.a) + "/" + repr(self.b)
+class GameObject(ABC):
+    def __init__(self, zycie=50):
+        self.zycie = zycie
 
-    def __str__(self):
-        return str(self.a) + "/" + str(self.b)
-
-    def __add__(self, other):
-        if b != d:
-            new_a = self.a * other.b + self.b * other.a
-            new_b = self.b * other.b
+    def czy_zyje(self):
+        if self.zycie > 0:
+            return True
         else:
-            new_a = self.a + other.a
-            new_b = self.b
-        return Fraction(new_a, new_b)
+            return False
 
-    def __sub__(self, other):
-        return self.a * other.d - self.b * other.c
-
-    def __mul__(self, other):
-        return self.a * other.c, "/", self.b * other.d
-
-    def div(self, other):
-        return self.a * other.d, "/", self.b * other.c
+    @abstractmethod
+    def interact(self):
+        pass
 
 
-a, b = 5, 2
-c, d = 1, 4
-f1 = Fraction(a, b)
+class Player(GameObject):
 
-print(f1)
+    def interact(self):
+        pass
 
+
+class Door(GameObject):
+
+    def interact(self, ob):
+        print('Gracz przeszedł przez drzwi.')
+
+
+class Monster(GameObject):
+
+    def interact(self, ob):
+        self.zycie = 0
+        ob.zycie -= 10
+        print('Gracz zabił potwora.')
+
+
+player_1 = Player()
+game = []
+
+for i in range(10):
+    if random() <= 0.7:
+        action = Monster()
+    else:
+        action = Door()
+
+    game.append(action)
+
+for stage in game:
+    if player_1.czy_zyje():
+        stage.interact(player_1)
+    else:
+        print('Gracz został zabity!')
+        break

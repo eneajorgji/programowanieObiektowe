@@ -1,9 +1,10 @@
 import math
 from abc import ABC, abstractmethod
+from random import random
 
 
-class GameObject():
-    def __init__(self, health_point_count):
+class GameObject(ABC):
+    def __init__(self, health_point_count=50):
         self.health_point_count = health_point_count
 
     def is_living(self):
@@ -18,43 +19,53 @@ class GameObject():
 
 
 class Player(GameObject):
-    def __init__(self, health_point_count):
-        super().__init__(health_point_count)
+    # def __init__(self, health_point_count):
+    #     super().__init__(health_point_count)
 
     def interact(self):
-        """
-        musi wyswietlac informacje o tym ze gracz przeszedł przez drzwi
-        """
         pass
 
 
-class Monster(GameObject):
-    def __init__(self, health_point_count):
-        super().__init__(health_point_count)
+class Door(GameObject):
+    # def __init__(self, health_point_count):
+    #     super().__init__(health_point_count)
 
-    def interact(self):
+    def interact(self, Player):
+        """
+        musi wyswietlac informacje o tym ze gracz przeszedł przez drzwi
+        """
+        print("Gracz przeszedl przez drzwi")
+
+
+class Monster(GameObject):
+    # def __init__(self, health_point_count):
+    #     super().__init__(health_point_count)
+
+    def interact(self, Player):
         """
         musi zmniejszyc liczbe punktów zdrowie obiektu podanego jako argument
         (czyli gracza) o 10, nastepnie ustawic punkty zdrowia tego potwora na 0 i
         wyswietlic informacje o tym ze potwór
         został zabity przez gracza.
         """
-        pass
+        self.health_point_count = 0
+        Player.health_point_count -= 10
+        print("Gracz zabil potwora")
 
 
-class Door(GameObject):
-    def __init__(self, health_point_count):
-        super().__init__(health_point_count)
+player_first = Player()
+game = []
 
-    def interact(self):
-        """
-        musi wyswietlac informacje o tym ze gracz przeszedł przez drzwi
-        """
-        pass
+for i in range(10):
+    if random() <= .7:
+        actions = Monster()
+    else:
+        actions = Door()
+    game.append(actions)
 
-
-gracz = GameObject(100)
-print(gracz.is_living())
-
-
-
+for stage in game:
+    if player_first.is_living():
+        stage.interact(player_first)
+    else:
+        print("Gracz zostal zabity!")
+        break
