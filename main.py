@@ -1,54 +1,36 @@
-import datetime
+import sys
+from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtWidgets import QMainWindow, QWidget, QLabel, QLineEdit
+from PyQt5.QtWidgets import QPushButton
+from PyQt5.QtCore import QSize
 
+from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QDoubleSpinBox
 
-###########
-# Zadanie 3
+import sys
 
-class Note:
+class MyApp(QWidget):
+    def __init__(self, parent=None):
+        super(MyApp, self).__init__(parent)
 
-    def __init__(self, autor, tresc):
-        self.autor = autor
-        self.tresc = tresc
+        dsbox = QDoubleSpinBox(self)
+        dsbox.setDecimals(1)
+        dsbox.setValue(100.00)
+        dsbox.setMinimum(1.00)
+        dsbox.setMaximum(3500.00)
+        dsbox.setSingleStep(1.00)
+        dsbox.setSuffix("mm")
 
-    def get_time(self):
-        self.t = datetime.datetime.now()
-        return self.t.strftime("%H:%M")
+        dsbox.valueChanged.connect(self.on_value_changed)
 
-    # TODO
-    def __repr__(self):
-        return f"Notatka: ({self.autor}, {self.tresc})"
+        self.show()
 
+    def on_value_changed(self):
+        print("You are now in the sub function.")
+        print (self.dsbox.value()) #Problem is hier
 
-class Notebook():
-    list_of_notes = []
-
-    # def __init__(self):
-    #     super().__init__()
-
-    # TODO
-    def add_new(self):
-        print(self.autor)
-
-    # TODO
-    def add_existing_note(self):
-        pass
-
-    # TODO
-    def len(self):
-        print("Jest", len(self.list_of_notes), "dodanych notatek.")
-
-    # TODO
-    def print_note(self):
-        count = 0
-        for i in self.list_of_notes:
-            count += 1
-            print(i)
-        print(count)
-
-
-nb = Notebook()
-nb.add_new("Bartek")
-
-n = Note()
-
-print("Godzina to:", n.get_time())
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    window = MyApp()
+    sys.exit(app.exec_())

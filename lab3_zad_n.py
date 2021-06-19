@@ -9,8 +9,8 @@ from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvas
 from matplotlib import pyplot as plt
 
-# Zadanie 1
-print("\n### Zadanie 1 ###\n")
+# Zadanie 2
+print("\n### Zadanie 2 ###\n")
 
 
 class ApplicationWindow(QMainWindow):
@@ -21,7 +21,7 @@ class ApplicationWindow(QMainWindow):
 
         layout = QHBoxLayout(self.main)
 
-        # Zdefiniowanie canvasa na którym b˛ed ˛ a rysowane wykresy
+        # Zdefiniowanie canvasa na którym beda rysowane wykresy
         self.figure = Figure(figsize=(6, 6))
         self.ax = self.figure.subplots()
 
@@ -39,6 +39,7 @@ class ApplicationWindow(QMainWindow):
 
         side_layout.addWidget(self.label)
         side_layout.addWidget(self.textbox_function)
+        print(self.textbox_function)
 
         # zdefiniowanie textboxu MIN
         self.label = QLabel('Min:', self)
@@ -70,7 +71,7 @@ class ApplicationWindow(QMainWindow):
         side_layout.addWidget(self.label)
         side_layout.addWidget(self.spinbox_step)
 
-        # Zdefiniowanie przycisku i podl˛ aczenie funkcji do niego
+        # Zdefiniowanie przycisku i podlaczenie funkcji do niego
         self.calculate_button = QPushButton("Draw")
         self.calculate_button.clicked.connect(self.calculate_slot)
         side_layout.addWidget(self.calculate_button)
@@ -80,10 +81,18 @@ class ApplicationWindow(QMainWindow):
     def calculate_slot(self):
         self.ax.clear()
 
-        x = np.linspace(-np.pi, np.pi, 100)
+        func = self.textbox_function.text()
+        print(f"Funkcja to: f(x)= {func}")
+        min = int(self.spinbox_min.value())
+        max = int(self.spinbox_max.value())
+        step = int(self.spinbox_step.value())
 
-        # Funkcja sinus
-        y = np.sin(x)
+        print(f"To jest wartosc min: {min}, max:{max}, steps: {step}")
+
+        x = np.linspace(min, max, step)
+
+        # Funkcja
+        y = eval(func)
 
         self.ax.plot(x, y)
         self.ax.grid(linestyle="--", alpha=0.5)
