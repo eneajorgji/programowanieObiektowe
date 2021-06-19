@@ -31,8 +31,47 @@ class ApplicationWindow(QMainWindow):
         side_layout = QVBoxLayout(self.main)
         layout.addLayout(side_layout)
 
+        # zdefiniowanie textboxu FUNCTION
+        self.label = QLabel('Function:', self)
+
+        self.textbox_function = QLineEdit(self)
+        self.textbox_function.move(20, 20)
+
+        side_layout.addWidget(self.label)
+        side_layout.addWidget(self.textbox_function)
+
+        # zdefiniowanie textboxu MIN
+        self.label = QLabel('Min:', self)
+
+        self.spinbox_min = QDoubleSpinBox(self)
+        self.spinbox_min.setRange(-100000, 0)
+        self.spinbox_min.setSingleStep(1)
+
+        side_layout.addWidget(self.label)
+        side_layout.addWidget(self.spinbox_min)
+
+        # zdefiniowanie textboxu MAX
+        self.label = QLabel('Max:', self)
+
+        self.spinbox_max = QDoubleSpinBox(self)
+        self.spinbox_max.setRange(0, 100000)
+        self.spinbox_max.setSingleStep(1)
+
+        side_layout.addWidget(self.label)
+        side_layout.addWidget(self.spinbox_max)
+
+        # zdefiniowanie textboxu STEP
+        self.label = QLabel('Step:', self)
+
+        self.spinbox_step = QDoubleSpinBox(self)
+        self.spinbox_step.setRange(0, 100000)
+        self.spinbox_step.setSingleStep(1)
+
+        side_layout.addWidget(self.label)
+        side_layout.addWidget(self.spinbox_step)
+
         # Zdefiniowanie przycisku i podl˛ aczenie funkcji do niego
-        self.calculate_button = QPushButton("Rysuj")
+        self.calculate_button = QPushButton("Draw")
         self.calculate_button.clicked.connect(self.calculate_slot)
         side_layout.addWidget(self.calculate_button)
 
@@ -63,6 +102,3 @@ if __name__ == '__main__':
     app.activateWindow()
     app.raise_()
     qapp.exec_()
-
-# Zadanie 2
-print("\n### Zadanie 2 ###\n")
