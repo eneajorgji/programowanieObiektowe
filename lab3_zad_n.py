@@ -9,9 +9,8 @@ from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvas
 from matplotlib import pyplot as plt
 
-# Zadanie 2
-print("\n### Zadanie 2 ###\n")
-
+# Zadanie 3
+print("\n### Zadanie 3 ###\n")
 
 class ApplicationWindow(QMainWindow):
     def __init__(self):
@@ -45,7 +44,7 @@ class ApplicationWindow(QMainWindow):
         self.label = QLabel('Min:', self)
 
         self.spinbox_min = QDoubleSpinBox(self)
-        self.spinbox_min.setRange(-100000, 0)
+        self.spinbox_min.setRange(-100000, 100000)
         self.spinbox_min.setSingleStep(1)
 
         side_layout.addWidget(self.label)
@@ -55,7 +54,7 @@ class ApplicationWindow(QMainWindow):
         self.label = QLabel('Max:', self)
 
         self.spinbox_max = QDoubleSpinBox(self)
-        self.spinbox_max.setRange(0, 100000)
+        self.spinbox_max.setRange(-100000, 100000)
         self.spinbox_max.setSingleStep(1)
 
         side_layout.addWidget(self.label)
@@ -97,6 +96,8 @@ class ApplicationWindow(QMainWindow):
         self.ax.plot(x, y)
         self.ax.grid(linestyle="--", alpha=0.5)
 
+        # plt.fill_between()
+
         self.figure.canvas.draw()
 
 
@@ -111,3 +112,4 @@ if __name__ == '__main__':
     app.activateWindow()
     app.raise_()
     qapp.exec_()
+

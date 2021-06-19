@@ -99,7 +99,7 @@ class ApplicationWindow(QMainWindow):
         self.label = QLabel('Min:', self)
 
         self.spinbox_min = QDoubleSpinBox(self)
-        self.spinbox_min.setRange(-100000, 0)
+        self.spinbox_min.setRange(-100000, 100000)
         self.spinbox_min.setSingleStep(1)
 
         side_layout.addWidget(self.label)
@@ -109,7 +109,7 @@ class ApplicationWindow(QMainWindow):
         self.label = QLabel('Max:', self)
 
         self.spinbox_max = QDoubleSpinBox(self)
-        self.spinbox_max.setRange(0, 100000)
+        self.spinbox_max.setRange(-100000, 100000)
         self.spinbox_max.setSingleStep(1)
 
         side_layout.addWidget(self.label)
