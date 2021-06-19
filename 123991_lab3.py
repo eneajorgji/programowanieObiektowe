@@ -9,6 +9,8 @@ from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvas
 from matplotlib import pyplot as plt
 
+import sympy as sy
+
 # Zadanie 1
 print("\n### Zadanie 1 ###\n")
 
@@ -66,6 +68,7 @@ if __name__ == '__main__':
 
 # Zadanie 2
 print("\n### Zadanie 2 ###\n")
+
 
 class ApplicationWindow(QMainWindow):
     def __init__(self):
@@ -152,6 +155,123 @@ class ApplicationWindow(QMainWindow):
         self.ax.grid(linestyle="--", alpha=0.5)
 
         self.figure.canvas.draw()
+
+
+if __name__ == '__main__':
+    qapp = QApplication.instance()
+    if not qapp:
+        qapp = QApplication(sys.argv)
+
+    app = ApplicationWindow()
+    app.setWindowTitle("Aplikacja")
+    app.show()
+    app.activateWindow()
+    app.raise_()
+    qapp.exec_()
+
+
+# Zadanie 3
+print("\n### Zadanie 3 ###\n")
+
+
+class ApplicationWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.main = QWidget()
+        self.setCentralWidget(self.main)
+
+        layout = QHBoxLayout(self.main)
+
+        # Zdefiniowanie canvasa na którym beda rysowane wykresy
+        self.figure = Figure(figsize=(6, 6))
+        self.ax = self.figure.subplots()
+
+        self.canvas = FigureCanvas(self.figure)
+        layout.addWidget(self.canvas)
+
+        side_layout = QVBoxLayout(self.main)
+        layout.addLayout(side_layout)
+
+        # zdefiniowanie textboxu FUNCTION
+        self.label = QLabel('Function:', self)
+
+        self.textbox_function = QLineEdit(self)
+        self.textbox_function.move(20, 20)
+
+        side_layout.addWidget(self.label)
+        side_layout.addWidget(self.textbox_function)
+        print(self.textbox_function)
+
+        # zdefiniowanie textboxu MIN
+        self.label = QLabel('Min:', self)
+
+        self.spinbox_min = QDoubleSpinBox(self)
+        self.spinbox_min.setRange(-100000, 100000)
+        self.spinbox_min.setSingleStep(1)
+
+        side_layout.addWidget(self.label)
+        side_layout.addWidget(self.spinbox_min)
+
+        # zdefiniowanie textboxu MAX
+        self.label = QLabel('Max:', self)
+
+        self.spinbox_max = QDoubleSpinBox(self)
+        self.spinbox_max.setRange(-100000, 100000)
+        self.spinbox_max.setSingleStep(1)
+
+        side_layout.addWidget(self.label)
+        side_layout.addWidget(self.spinbox_max)
+
+        # zdefiniowanie textboxu STEP
+        self.label = QLabel('Step:', self)
+
+        self.spinbox_step = QDoubleSpinBox(self)
+        self.spinbox_step.setRange(0, 100000)
+        self.spinbox_step.setSingleStep(1)
+
+        side_layout.addWidget(self.label)
+        side_layout.addWidget(self.spinbox_step)
+
+        # Zdefiniowanie przycisku i podlaczenie funkcji do niego
+        self.calculate_button = QPushButton("Draw")
+        self.calculate_button.clicked.connect(self.calculate_slot)
+        side_layout.addWidget(self.calculate_button)
+
+        side_layout.addStretch(1)
+
+    def calculate_slot(self):
+        self.ax.clear()
+
+        func = self.textbox_function.text()
+        print(f"Funkcja to: f(x)= {func}")
+
+        min = int(self.spinbox_min.value())
+        max = int(self.spinbox_max.value())
+        step = int(self.spinbox_step.value())
+
+        print(f"To jest wartosc min: {min}, max:{max}, steps: {step}")
+
+        x = np.linspace(min, max, step)
+
+        # Funkcja
+        y = eval(func)
+
+        self.ax.plot(x, y)
+        self.ax.grid(linestyle="--", alpha=0.5)
+
+        # Oznaczenie pola
+        self.ax.fill_between(x, y, color="blue", alpha=0.5)
+
+        self.figure.canvas.draw()
+
+        # Calka nieoznaczone funkcji
+        integral_func = sy.integrate(func)
+        print(f"To jest calka nieoznaczona funkcji: {integral_func}")
+
+        # Calka oznaczone funkcji
+        x_symbol = sy.Symbol("x")
+        definite_integral_func = sy.integrate(func, (x_symbol, min, max))
+        print(f"Pole wynosi: {definite_integral_func} cm2")
 
 
 if __name__ == '__main__':
