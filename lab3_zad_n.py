@@ -9,8 +9,11 @@ from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvas
 from matplotlib import pyplot as plt
 
+import sympy as sy
+
 # Zadanie 3
 print("\n### Zadanie 3 ###\n")
+
 
 class ApplicationWindow(QMainWindow):
     def __init__(self):
@@ -82,6 +85,7 @@ class ApplicationWindow(QMainWindow):
 
         func = self.textbox_function.text()
         print(f"Funkcja to: f(x)= {func}")
+
         min = int(self.spinbox_min.value())
         max = int(self.spinbox_max.value())
         step = int(self.spinbox_step.value())
@@ -96,9 +100,19 @@ class ApplicationWindow(QMainWindow):
         self.ax.plot(x, y)
         self.ax.grid(linestyle="--", alpha=0.5)
 
-        # plt.fill_between()
+        # Oznaczenie pola
+        self.ax.fill_between(x, y, color="blue", alpha=0.5)
 
         self.figure.canvas.draw()
+
+        # Calka nieoznaczone funkcji
+        integral_func = sy.integrate(func)
+        print(f"To jest calka nieoznaczona funkcji: {integral_func}")
+
+        # Calka oznaczone funkcji
+        x_symbol = sy.Symbol("x")
+        definite_integral_func = sy.integrate(func, (x_symbol, min, max))
+        print(f"Pole wynosi: {definite_integral_func} cm2")
 
 
 if __name__ == '__main__':
@@ -112,4 +126,3 @@ if __name__ == '__main__':
     app.activateWindow()
     app.raise_()
     qapp.exec_()
-
