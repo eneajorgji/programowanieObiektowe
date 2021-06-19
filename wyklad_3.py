@@ -5,11 +5,11 @@ from PyQt5.QtGui import QIcon
 
 
 class NazwaNaszejKlasy(QMainWindow):
-"""
-https://pythonspot.com/category/pyqt5/
-https://doc.qt.io/qt-5/qwidget.html
-https://doc.qt.io/qt-5/
-"""
+    # """
+    # https://pythonspot.com/category/pyqt5/
+    # https://doc.qt.io/qt-5/qwidget.html
+    # https://doc.qt.io/qt-5/
+    # """
     def __init__(self):
         super().__init__()
         self.licznik = 0
