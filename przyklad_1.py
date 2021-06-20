@@ -109,6 +109,7 @@ class ApplicationWindow(QMainWindow):
         # Calka oznaczone funkcji
         x_symbol = sy.Symbol("x")
         definite_integral_func = sy.integrate(func, (x_symbol, s_min, s_max))
+        print("Pole = ", definite_integral_func)
 
 
 if __name__ == '__main__':
