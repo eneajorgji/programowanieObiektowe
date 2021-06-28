@@ -25,7 +25,6 @@ class ApplicationWindow(QMainWindow):
 
         # Zdefiniowanie canvasa na którym beda rysowane wykresy
         self.figure = Figure(figsize=(6, 6))
-        self.ax = self.figure.subplots()
 
         self.canvas = FigureCanvas(self.figure)
         layout.addWidget(self.canvas)
@@ -92,7 +91,8 @@ class ApplicationWindow(QMainWindow):
 
         print(f"To jest wartosc min: {min}, max:{max}, steps: {step}")
 
-        x = np.linspace(min, max, step)
+        x = np.linspace(min, max, step + 1)
+        # x_1 = np.linspace(min, max, step * 100)
 
         # Funkcja
         y = eval(func)

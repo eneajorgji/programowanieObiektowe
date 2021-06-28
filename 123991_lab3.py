@@ -23,7 +23,7 @@ class ApplicationWindow(QMainWindow):
 
         layout = QHBoxLayout(self.main)
 
-        # Zdefiniowanie canvasa na którym b˛ed ˛ a rysowane wykresy
+        # Zdefiniowanie canvasa na którym beda rysowane wykresy
         self.figure = Figure(figsize=(6, 6))
         self.ax = self.figure.subplots()
 
@@ -169,7 +169,6 @@ if __name__ == '__main__':
     app.raise_()
     qapp.exec_()
 
-
 # Zadanie 3
 print("\n### Zadanie 3 ###\n")
 
@@ -251,7 +250,8 @@ class ApplicationWindow(QMainWindow):
 
         print(f"To jest wartosc min: {min}, max:{max}, steps: {step}")
 
-        x = np.linspace(min, max, step)
+        x = np.linspace(min, max, step + 1)
+        # x_1 = np.linspace(min, max, step * 100)
 
         # Funkcja
         y = eval(func)
