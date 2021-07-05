@@ -1,4 +1,6 @@
 #### Class 1 ####
+from scitools import *
+
 
 class Account:
     def __init__(self, balance, name, account_number):
@@ -58,3 +60,42 @@ class PhoneBook:
 
 person_1 = PhoneBook("Adam Nowy", 333444111222, email="adamnowy@myemail.com")
 print(person_1.print_phone_details())
+
+
+#### Class 3 ####
+class Vec2D(object):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __add__(self, other):
+        return Vec2D(self.x + other.x, self.y + other.y)
+
+    def __sub__(self, other):
+        return Vec2D(self.x - other.x, self.y - other.y)
+
+    def __mul__(self, other):
+        return self.x * other.x + self.y * other.y
+
+    def __abs__(self):
+        return math.sqrt(self.x ** 2 + self.y ** 2)
+
+    def __eq__(self, other):
+        return self.x == other.x and self.y == other.y
+
+    def __str__(self):
+        return '(%g, %g)' % (self.x, self.y)
+
+    def __ne__(self, other):
+        return not self.__eq__(other)  # reuse __eq__
+
+
+vec_1 = Vec2D(2.5, 3)
+vec_2 = Vec2D(10, 10)
+res = vec_1 + vec_2
+print(vec_1.__add__(vec_2))
+print(vec_1.__str__())
+print(res)
+
+
+##############
