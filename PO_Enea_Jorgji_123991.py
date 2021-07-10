@@ -72,20 +72,30 @@ class LibraryItems:
         self.author = author
         self.publication_date = publication_date
 
-    def get_location(self):
-        pass
+    def get_location(self, location):
+        self.location = location
+        print(f"The book {self.title}, "
+              f"within the subject of {self.subject}, "
+              f"written by {self.author} and published on {self.publication_date}. "
+              f"You can find it on shelf {self.location}")
 
-    def set_location(self):
-        pass
+
+    # def set_location(self, location):
+    #     self.location = location
 
 
 class Book(LibraryItems):
-    def __init__(self):
-        super(Book, self).__init__(ISBN)
+    def __init__(self, title, subject, author, publication_date, ISBN):
+        super().__init__(self, title, subject, author, publication_date)
         self.ISBN = ISBN
 
 
 class Magazine(Book):
-    def __init__(self):
-        super(Magazine, self).__init__(volume)
+    def __init__(self, title, subject, author, publication_date, volume):
+        super().__init__(self, title, subject, author, publication_date)
         self.volume = volume
+
+
+lib = LibraryItems("XXXX_title", "Subject_1", "Name author", 2002)
+
+print(lib.get_location("xx xxx"))
